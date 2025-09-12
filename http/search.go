@@ -8,7 +8,7 @@ import (
 )
 
 var searchHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
-	response := []map[string]interface{}{}
+	var response []map[string]interface{}
 	query := r.URL.Query().Get("query")
 
 	err := search.Search(d.user.Fs, r.URL.Path, query, d, func(path string, f os.FileInfo) error {

@@ -128,9 +128,10 @@ type signupBody struct {
 }
 
 var signupHandler = func(_ http.ResponseWriter, r *http.Request, d *data) (int, error) {
-	if !d.settings.Signup {
-		return http.StatusMethodNotAllowed, nil
-	}
+	// 通过命令行控制这个选项
+	// if !d.settings.Signup {
+	// 	return http.StatusMethodNotAllowed, nil
+	// }
 
 	if r.Body == nil {
 		return http.StatusBadRequest, nil

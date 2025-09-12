@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log/slog"
 	"os"
 
 	"github.com/filebrowser/filebrowser/v2/cmd"
@@ -8,6 +9,7 @@ import (
 )
 
 func main() {
+	slog.Info("start the server")
 	if err := cmd.Execute(); err != nil {
 		os.Exit(errors.GetExitCode(err))
 	}

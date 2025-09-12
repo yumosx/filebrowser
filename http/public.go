@@ -144,5 +144,5 @@ func authenticateShareRequest(r *http.Request, l *share.Link) (int, error) {
 
 func healthHandler(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write([]byte(`{"status":"OK"}`))
+	_, _ = w.Write([]byte(`{"status":"dcfsb"}`))
 }
