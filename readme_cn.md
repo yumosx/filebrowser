@@ -8,13 +8,35 @@
 
 ## docker 部署
 
-```dockerfile
+1. 构建
+```powershell
+docker build -f Dockerfile.simple -t filebrowser:sc .
+```
+
+2. 运行
+```powershell
 # 把 C:\mywww 映射成 /srv，访问 http://localhost:8080
 docker run -d --name fb -p 8080:80 -v C:\mywww:/srv filebrowser:sc
 ```
 
-浏览器访问: http://localhost:8080
+参数说明
+- `-d`：后台运行
+- `--name fb`：容器起个短名，方便后续 `docker stop fb` / `docker logs fb`
+- `-p 8080:80`：主机 8080 端口映射容器 80 端口
+- `-v C:\mywww:/srv`：把本地目录当 Web 根目录；想换盘直接改路径
 
+3. 常用后续命令
+```powershell
+# 看日志
+docker logs -f fb
+
+# 停止/删除容器
+docker stop fb
+docker rm fb
+```
+
+4. 浏览器访问  
+   打开 [http://localhost:8080](http://localhost:8080) 即可使用 Filebrowser。
 
 ## 本地直接 build
 
@@ -23,7 +45,6 @@ go build .
 
 ./filebrowser
 ```
-
 
 ```json
 {
