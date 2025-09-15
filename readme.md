@@ -25,17 +25,10 @@ docker run -d --name fb -p 8080:80 -v C:\mywww:/srv filebrowser:sc
 - `-p 8080:80`：主机 8080 端口映射容器 80 端口
 - `-v C:\mywww:/srv`：把本地目录当 Web 根目录；想换盘直接改路径
 
-3. 常用后续命令
-```powershell
-# 看日志
-docker logs -f fb
+在配置的时候需要开启对应的 `"createUserDir": true` 这个选项，避免多个用户共享对应的文件夹, 或者由管理员配置
 
-# 停止/删除容器
-docker stop fb
-docker rm fb
-```
 
-4. 浏览器访问  
+3. 浏览器访问  
    打开 [http://localhost:8080](http://localhost:8080) 即可使用 Filebrowser。
 
 ## 本地直接 build
@@ -103,7 +96,7 @@ Use "filebrowser [command] --help" for more information about a command.
 ```
 
 
-## 后端接口地址:
+## 后端接口:
 ```go
 // 文件/目录资源操作（浏览、创建、修改、删除、部分更新）
 // 浏览与读取

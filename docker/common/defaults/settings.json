@@ -4,5 +4,49 @@
   "address": "",
   "log": "stdout",
   "database": "/database/filebrowser.db",
-  "root": "/srv"
+  "root": "/srv",
+  "key": [],
+  "signup": false,
+  "createUserDir": true,
+  "userHomeBasePath": "/srv/users",
+  "minimumPasswordLength": 12,
+  "fileMode": 416,
+  "dirMode": 488,
+  "authMethod": "json",
+  "defaults": {
+    "scope": ".",
+    "locale": "en",
+    "viewMode": "list",
+    "sorting": {
+      "by": "name",
+      "asc": true
+    },
+    "perm": {
+      "admin": false,
+      "execute": true,
+      "create": true,
+      "rename": true,
+      "modify": true,
+      "delete": true,
+      "share": true,
+      "download": true
+    }
+  },
+  "rules": [
+    {
+      "name": "Hide Hidden Files",
+      "match": "^\\.",
+      "access": "deny"
+    },
+    {
+      "name": "Protect Caddyfile",
+      "match": "^Caddyfile$",
+      "access": "deny"
+    },
+    {
+      "name": "Restrict System Directories",
+      "match": "^/etc/|^/proc/|^/sys/|^/dev/",
+      "access": "deny"
+    }
+  ]
 }

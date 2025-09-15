@@ -1,4 +1,3 @@
-
 # --------- 1. 前端 ---------
 FROM node:22-alpine AS frontend-builder
 WORKDIR /src
@@ -8,7 +7,6 @@ COPY frontend/package*.json ./
 RUN pnpm install
 COPY frontend ./
 RUN pnpm run build
-
 
 # --------- 2. Go 构建阶段 ---------
 FROM golang:1.24-alpine AS go-builder
@@ -29,8 +27,7 @@ COPY --from=frontend-builder /src/dist ./frontend/dist
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
     go build -trimpath -ldflags="-s -w" -o /out/filebrowser ./
 
-
-# --------- 3. 运行时（distroless，最小攻击面） ---------
+# --------- 3. 运行时（distroless） ---------
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /app
 
