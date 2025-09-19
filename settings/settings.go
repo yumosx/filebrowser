@@ -1,3 +1,5 @@
+// 所有的配置选项
+
 package settings
 
 import (

@@ -25,8 +25,8 @@ docker run -d --name fb -p 8080:80 -v C:\mywww:/srv filebrowser:sc
 - `-p 8080:80`：主机 8080 端口映射容器 80 端口
 - `-v C:\mywww:/srv`：把本地目录当 Web 根目录；想换盘直接改路径
 
-在配置的时候需要开启对应的 `"createUserDir": true` 这个选项，避免多个用户共享对应的文件夹, 或者由管理员配置
-
+- 用户隔离: 在配置的时候需要开启对应的 `"createUserDir": true` 这个选项，避免多个用户共享对应的文件夹, 或者由管理员配置
+- 设置不用授权就可以登录: `-noauth`
 
 3. 浏览器访问  
    打开 [http://localhost:8080](http://localhost:8080) 即可使用 Filebrowser。
@@ -96,7 +96,16 @@ Use "filebrowser [command] --help" for more information about a command.
 ```
 
 
-## 后端接口:
+## 项目结构:
+
+整个项目分成下面几个
+- http: 用来处理对应的 web 请求
+- users/share/auth/setting: 分别处理我们相关的业务, 比如用户登录，用户登出，用户鉴权，用户的分析
+- file: 主要是用来管理整个文件相关的内容, 比如文件的创建, 文件的删除
+- storage: 主要是用来持久化数据, 比如用户信息, 用户设置
+
+
+1. http 接口
 ```go
 // 文件/目录资源操作（浏览、创建、修改、删除、部分更新）
 // 浏览与读取

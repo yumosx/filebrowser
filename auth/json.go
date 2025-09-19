@@ -50,7 +50,7 @@ func (a JSONAuth) Auth(r *http.Request, usr users.Store, _ *settings.Settings, s
 			return nil, os.ErrPermission
 		}
 	}
-
+	// 获取对应的用户
 	u, err := usr.Get(srv.Root, cred.Username)
 	if err != nil || !users.CheckPwd(cred.Password, u.Password) {
 		return nil, os.ErrPermission

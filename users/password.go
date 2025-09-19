@@ -34,6 +34,7 @@ func CheckPwd(password, hash string) bool {
 	return err == nil
 }
 
+// RandomPwd 随机生成一个密码
 func RandomPwd(passwordLength uint) (string, error) {
 	randomPasswordBytes := make([]byte, passwordLength)
 	var _, err = rand.Read(randomPasswordBytes)

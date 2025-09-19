@@ -10,6 +10,7 @@ type settingsBackend struct {
 	db *storm.DB
 }
 
+// Get 返回一个 设置 对象
 func (s settingsBackend) Get() (*settings.Settings, error) {
 	set := &settings.Settings{}
 	return set, get(s.db, "settings", set)
